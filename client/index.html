@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html ng-app="HomebrewApp">
+
+<head>
+    <meta charset="utf-8">
+    <title>Homebrew Recipes</title>
+
+    <link rel="stylesheet" href="css/style.css">
+
+    <script src="js/angular.min.js"></script>
+    <!--<script src="js/angular-resource.min.js"></script>-->
+    <script src="js/script.js"></script>
+</head>
+
+<body>
+    <header>
+        <h1>Homebrew Recipes</h1>
+    </header>
+    <div ng-controller="MyController" data-ng-init="init()">
+        <md-icon ng-bind="myIconVariable"></md-icon>
+        <div id="formAddEdit">
+            <p id="info">&#9664;Click here to add a new recipe.</p>
+            <div id="formBtns">
+                <div id="newBtn" ng-show="showNewBtnFlag" class="" ng-click="prepareToAddNew()">
+                    <figure>
+                        <img src="assets/images/add2.png" alt="">
+                    </figure>
+                </div>
+                <div id="addBtn" ng-show="showAddBtnFlag" class="ng-hide" ng-click="addNewRecipe()">
+                    <figure>
+                        <img src="assets/images/add.png" alt="">
+                    </figure>
+                </div>
+                <div id="cancelAddBtn" ng-show="showCancelAddBtnFlag" class="ng-hide" ng-click="cancel()">
+                    <figure>
+                        <img src="assets/images/cancel3.png" alt="">
+                    </figure>
+                </div>
+                <div id="saveBtn" ng-show="showSaveBtnFlag"  class="ng-hide" ng-click="editRecipe()">
+                    <figure>
+                        <img src="assets/images/save.png" alt="">
+                    </figure>
+                </div>
+                <div id="cancelEditBtn" ng-show="showCancelEditBtnFlag" class="ng-hide" ng-click="cancel()">
+                    <figure>
+                        <img src="assets/images/cancel2.png" alt="">
+                    </figure>
+                </div>
+            </div>
+            <div id="formInputText">
+                <div id="nameId">
+                    <div class="label">
+                        {{ label_name }} 
+                    </div>
+                    <input class="input_md" type="text" ng-blur="toAdd()" ng-model="newRecipe.name" placeholder="Ex.:Canarios">
+                </div>
+                <div id="beerStyleId">
+                    <div class="label">
+                        {{ label_beerStyle }} 
+                    </div>
+                    <input class="input_md" type="text" ng-blur="toAdd()" ng-model="newRecipe.beerStyle" placeholder="Ex.:Belgian Pale Ale">
+                </div>
+                <div id="notesId">
+                    <div class="label">
+                    {{ label_notes }}
+                    </div>
+                    <textarea class="input_bg" type="text" ng-blur="toAdd()" ng-model="newRecipe.notes" placeholder="Ex.:Brew notes"></textarea>
+                </div>
+                <div id="ferm1Id">
+                    <div class="label">
+                    {{ label_1ferm}}
+                    </div>
+                    <input class="input_sm" type="text" ng-blur="toAdd()" ng-model="newRecipe.firstFermentationDays" placeholder="15">
+                </div>
+                <div id="ferm2Id">
+                    <div class="label">
+                    {{ label_2ferm }}
+                    </div>
+                    <input class="input_sm" type="text" ng-blur="toAdd()" ng-model="newRecipe.secondFermentationDays" placeholder="15">
+                </div>
+                <div id="clariId">
+                    <div class="label">
+                    {{ label_clari}}
+                    </div>
+                    <input class="input_sm" type="text" ng-blur="toAdd()" ng-model="newRecipe.clarificationDays" placeholder="4">
+                </div>
+                <div id="maturId">
+                    <div class="label">
+                    {{ label_matur }}
+                    </div>
+                    <input class="input_sm" type="text" ng-blur="toAdd()" ng-model="newRecipe.maturationDays" placeholder="15">
+                </div>
+                <div id="sugarId">
+                    <div class="label">
+                    {{ label_sugar}}
+                    </div>
+                    <input class="input_sm" type="text" ng-blur="toAdd()" ng-model="newRecipe.sugarQtd" placeholder="123.75">
+                </div>
+                <div id="ogId">
+                    <div class="label">
+                    {{ label_og}}
+                    </div>
+                    <input class="input_sm3" type="text" ng-blur="toAdd()" ng-model="newRecipe.og" placeholder="1.053">
+                </div>
+                <div id="fgId">
+                    <div class="label">
+                    {{ label_fg}}
+                    </div>
+                    <input class="input_sm3" type="text" ng-blur="toAdd()" ng-model="newRecipe.fg" placeholder="1.009">
+                </div>
+                <div id="abvId">
+                    <div class="label">
+                    {{ label_abv }}
+                    </div>
+                    <input class="input_sm2" type="text" ng-blur="toAdd()" ng-model="newRecipe.abv" placeholder="5.5">
+                </div>
+                <div id="ibuId">
+                    <div class="label">
+                    {{ label_ibu }}
+                    </div>
+                    <input class="input_sm2" type="text" ng-blur="toAdd()" ng-model="newRecipe.ibu" placeholder="23">
+                </div>
+                <div id="literId">
+                    <div class="label">
+                    {{ label_liter}}
+                    </div>
+                    <input class="input_sm2" type="text" ng-blur="toAdd()" ng-model="newRecipe.liter" placeholder="20">
+                </div>
+                <div id="co2Id">
+                    <div class="label">
+                    {{ label_co2 }}
+                    </div>
+                    <input class="input_sm2" type="text" ng-blur="toAdd()" ng-model="newRecipe.co2" placeholder="3">
+                </div>
+            </div>
+            <br style="clear:both;"/>
+        </div>
+        <div id="controlTable1">
+            <input id="listTable1" type="button" value="List" ng-click="manageTable1()">
+        </div>
+        <div id="controlTable2">
+            <input id="listTable2" type="button" value="Filter By:" ng-click="manageTable2()">
+            <input id="abvMin" class="input_sm" type="number" ng-model="abvMin">
+            <input id="abvMax" class="input_sm" type="number" ng-model="abvMax">
+        </div>
+        <h2 ng-class="ng-hide" ng-show="showTable1">All Recipes</h2>
+        <h2 ng-class="ng-hide" ng-show="showTable2">Recipes with ABV(%) between {{abvMin}}% and {{abvMax}}%</h2>
+        <table class="table table-striped" id="table1" ng-show="showTable1" ng-class="ng-hide">
+            <thead>
+                <tr>
+                    <th colspan="3">Beer</th>
+                    <th colspan="2">Gravity</th>
+                    <th colspan="5">Characteristics</th>
+                    <th colspan="4">Fermentation(days)</th>
+                    <th colspan="2">Options</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td style="width:600px">Name</td>
+                    <td style="width:600px">Beer Style</td>
+                    <td style="width:1200px">Notes</td>
+                    <td style="width:80px">OG(SG)</td>
+                    <td style="width:80px">FG(SG)</td>
+                    <td style="width:80px">IBU</td>
+                    <td style="width:80px">ABV(%)</td>
+                    <td style="width:80px">CO2</td>
+                    <td style="width:80px">Liters</td>
+                    <td style="width:80px">Sugar(g)</td>
+                    <td style="width:80px">1º Fermen.</td>
+                    <td style="width:80px">2º Fermen.</td>
+                    <td style="width:80px">Clarification</td>
+                    <td style="width:80px">Maturation</td>
+                    <td style="width:80px">Edit</td>
+                    <td style="width:80px">Delete</td>
+                </tr>
+                <tr ng-repeat="recipe in recipes">
+                    <td>{{ recipe.name }}</td>
+                    <td>{{ recipe.beerStyle }}</td>
+                    <td>{{ recipe.notes }}</td>
+                    <td>{{ recipe.og }}</td>
+                    <td>{{ recipe.fg }}</td>
+                    <td>{{ recipe.ibu }}</td>
+                    <td>{{ recipe.abv }}</td>
+                    <td>{{ recipe.co2 }}</td>
+                    <td>{{ recipe.liter }}</td>
+                    <td>{{ recipe.sugarQtd }}</td>
+                    <td>{{ recipe.firstFermentationDays }}</td>
+                    <td>{{ recipe.secondFermentationDays }}</td>
+                    <td>{{ recipe.clarificationDays }}</td>
+                    <td>{{ recipe.maturationDays }}</td>
+                    <td>
+                        <figure id="editBtnImg" ng-click="prepareToEditRecipe(recipe,$index)">
+                            <img src="assets/images/edit.png" alt="">
+                        </figure>
+                    </td>
+                    <td>
+                        <figure id="deleteBtnImg" ng-click="deleteRecipe(recipe,$index)">
+                            <img src="assets/images/delete.png" alt="">
+                        </figure>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+
+        <table class="table2 table-striped"  ng-show="showTable2" ng-class="ng-hide">
+            <thead>
+                <tr>
+                    <th colspan="3">Beer</th>
+                    <th colspan="2">Gravity</th>
+                    <th colspan="5">Characteristics</th>
+                    <th colspan="4">Fermentation(days)</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td style="width:600px">Name</td>
+                    <td style="width:600px">Beer Style</td>
+                    <td style="width:1200px">Notes</td>
+                    <td style="width:80px">OG(SG)</td>
+                    <td style="width:80px">FG(SG)</td>
+                    <td style="width:80px">IBU</td>
+                    <td style="width:80px">ABV(%)</td>
+                    <td style="width:80px">CO2</td>
+                    <td style="width:80px">Liters</td>
+                    <td style="width:80px">Sugar(g)</td>
+                    <td style="width:80px">1º Fermen.</td>
+                    <td style="width:80px">2º Fermen.</td>
+                    <td style="width:80px">Clarification</td>
+                    <td style="width:80px">Maturation</td>
+                </tr>
+                <tr ng-repeat="recipe in recipes">
+                    <td>{{ recipe.name }}</td>
+                    <td>{{ recipe.beerStyle }}</td>
+                    <td>{{ recipe.notes }}</td>
+                    <td>{{ recipe.og }}</td>
+                    <td>{{ recipe.fg }}</td>
+                    <td>{{ recipe.ibu }}</td>
+                    <td>{{ recipe.abv }}</td>
+                    <td>{{ recipe.co2 }}</td>
+                    <td>{{ recipe.liter }}</td>
+                    <td>{{ recipe.sugarQtd }}</td>
+                    <td>{{ recipe.firstFermentationDays }}</td>
+                    <td>{{ recipe.secondFermentationDays }}</td>
+                    <td>{{ recipe.clarificationDays }}</td>
+                    <td>{{ recipe.maturationDays }}</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <!--<footer>
+        <h2>© Created by Paulo Eduardo Teixeira de Souza - 2017</h2>
+    </footer>-->
+</body>
+
+</html>

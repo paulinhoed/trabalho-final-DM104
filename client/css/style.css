@@ -1,0 +1,312 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+body, html{
+    background-color: lightgray;
+    color:black;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+header{
+    position: absolute;
+    height: 50px;
+    width: 100%;
+    left: 0px;
+    top: 0px;
+    background-color: black;
+}
+header h1{
+    position: relative;
+    text-align: center;
+    top: 3px;
+    color: #ffb600;
+}
+h2{
+    position: absolute;
+   left: 50%;
+    top:235px;
+}
+p{
+    position: absolute;
+    font-size: 20px;
+    top: 65px;
+    left: 10%;
+}
+#formAddEdit{
+    position: absolute;
+    width: 100%;
+    top: 60px;
+    
+    background-color:lightseagreen;
+}
+#formInputText{
+    position: relative;
+    width: 80%;
+    height: 165px;
+    float: right;
+}
+#formBtns{
+    position: relative;
+    width: 20%;
+    height: 165px;
+    float: left;
+}
+#controlTable1 {
+    position: absolute;
+    width: auto;
+    height: 50px;
+    top: 230px;
+    left: 10%;
+}
+#controlTable2 {
+    position: absolute;
+    width: auto;
+    height: 50px;
+    top: 230px;
+    left: 20%;
+}
+#listTable1{
+    position: relative;
+    top: 10px;
+    left: 10%;
+    height: 30px;
+    width: 100px;
+    background-color:#eef777;
+}
+#listTable2{
+    position: relative;
+    top: 10px;
+    left: 25%;
+    height: 30px;
+    width: 100px;
+    background-color:#b4bf1b;
+}
+#abvMin{
+    top: 11px;
+    height: 27px;
+    width: 50px;
+    background-color:#b4bf1b;
+    left: 26%;
+}
+#abvMax{
+    top: 11px;
+    height: 27px;
+    width: 50px;
+    background-color:#b4bf1b;
+    left: 26%;
+}
+.table,.table2{
+    position: relative;
+    top: 285px;
+    background-color:black;
+    border: 1px; 
+    border-style: solid;
+    color:black;
+}
+.table tr:nth-child(odd){
+    background-color:#eef777;
+}
+.table tr:nth-child(even){
+    background-color:#b4bf1b;
+}
+.table tr:first-child{
+    background-color: darkgreen;
+    color: white;
+}
+table th{
+    font-size: 15px;
+}
+table td{
+    font-size: 12px;
+    text-align: center;
+    width: 150px;
+    height: 40px;
+}
+/*.table2{
+    position: relative;
+    top: 280px;
+    background-color:black;
+    border: 1px; 
+    border-style: solid;
+    color:black;
+}*/
+.table2 tr:nth-child(odd){
+    background-color:#b6ffb8;
+}
+.table2 tr:nth-child(even){
+    background-color:#a8e8ab;
+}
+.table2 tr:first-child{
+    background-color: darkcyan;
+    color: lightcyan;
+}
+footer{
+    position: relative;
+    background-color: black;
+    height: 50px;
+    width: 100%;
+    top: 110px;
+}
+footer h2{
+    color: #ffb600;
+    position: relative;
+    text-align: center;
+    top:7px;
+}
+/*
+*/
+#nameId{
+    position: absolute;
+    top: 10px;
+    left:10px;
+}
+#beerStyleId{
+    position: absolute;
+    top: 40px;
+    left:10px;
+}
+#notesId{
+    position: absolute;
+    top: 70px;
+    left:10px;
+}
+/*
+*/
+
+#ferm1Id{
+    position: absolute;
+    top: 10px;
+    left:390px;
+}
+#ferm2Id{
+    position: absolute;
+    top: 40px;
+    left:390px;
+}
+#clariId{
+    position: absolute;
+    top: 70px;
+    left:390px;
+}
+#maturId{
+    position: absolute;
+    top: 100px;
+    left:390px;
+}
+#sugarId{
+    position: absolute;
+    top: 130px;
+    left:390px;
+}
+/*
+*/
+#ogId{
+    position: absolute;
+    top: 40px;
+    left:650px;
+}
+#fgId{
+    position: absolute;
+    top: 70px;
+    left:650px;
+}
+#abvId{
+    position: absolute;
+    top: 100px;
+    left:650px;
+}
+#co2Id{
+    position: absolute;
+    top: 100px;
+    left:795px;
+}
+#ibuId{
+    position: absolute;
+    top: 40px;
+    left:795px;
+}
+#literId{
+    position: absolute;
+    top: 70px;
+    left:795px;
+}
+.label{
+    width: 200px;
+}
+.input_sm{
+    position: relative;
+    width: 35px;
+    top: -20px;
+    left: 190px;
+}
+.input_sm2{
+    position: relative;
+    width: 30px;
+    top: -20px;
+    left: 80px;
+}
+.input_sm3{
+    position: relative;
+    width: 45px;
+    top: -20px;
+    left: 80px;
+}
+.input_md{
+    position: relative;
+    width: 250px;
+    top: -20px;
+    left: 100px;
+}
+.input_bg{
+    position: relative;
+    width: 250px;
+    height: 80px;
+    top: -20px;
+    left: 100px;
+}
+figure {
+     position: relative;
+}
+figure img {
+    width: 50%;
+    position: absolute;
+    left: 15px;
+    top: -15px;
+    cursor: pointer;
+}
+#newBtn figure img {
+    width: 45%;
+    position: absolute;
+    left: 1%;
+    top: 30px;
+    cursor: pointer;
+}
+#addBtn figure img {
+    width: 30%;
+    position: absolute;
+    left: 10%;
+    top: 40px;
+    cursor: pointer;
+}
+#cancelAddBtn figure img{
+    width: 27%;
+    position: absolute;
+    left: 50%;
+    top: 40px;
+    cursor: pointer;
+}
+#saveBtn figure img {
+    width: 30%;
+    position: absolute;
+    left: 10%;
+    top: 40px;
+    cursor: pointer;
+}
+#cancelEditBtn figure img {
+    width: 30%;
+    position: absolute;
+    left: 50%;
+    top: 40px;
+    cursor: pointer;
+}
+
